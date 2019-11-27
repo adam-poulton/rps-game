@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max))
+        }
+
+        function capitalise(string){
+            return (string.slice(0,1).toUpperCase() 
+            + string.slice(1).toLowerCase())
+        }
+
+        function computerPlay(){
+            const options = ["Rock", "Paper", "Scissors"]
+            return options[getRandomInt(options.length)]
+        }
+
+        function playRound(computerSelection, playerSelection){
+            let result;
+            playerSelection = capitalise(playerSelection);
+            if (computerSelection == playerSelection){
+                result = `Draw! ${playerSelection} draws with ${computerSelection}`;
+            } else if (computerSelection === "Rock" && playerSelection === "Scissors" 
+                || computerSelection === "Paper" && playerSelection === "Rock" 
+                || computerSelection === "Scissors" && playerSelection === "Paper" ){
+                result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+            } else if (computerSelection === "Rock" && playerSelection === "Paper"
+                || computerSelection === "Paper" && playerSelection === "Scissors"
+                || computerSelection === "Scissors" && playerSelection === "Rock"){
+                result = `You Win! ${computerSelection} is beaten by ${playerSelection}`;
+            }
+            return result;
+        }
+
+        function game(){
+            const rounds = 5;
+            let computerScore = 0;
+            let playerScore = 0;
+            let result;
+
+            while (true) {
+                result = playRound(computerPlay(), prompt("Rock, Paper or Scissors?"))
+                if (result.includes("Lose")) computerScore++;
+                if (result.includes("Win")) playerScore++;
+                console.log(result)
+                if(computerScore == rounds || playerScore == rounds){
+                    console.log(`Game Over!! computer: ${computerScore} player: ${playerScore}`)
+                    break;
+                }
+            } 
+        }
+        game()
+
+    </script>
+</html>
