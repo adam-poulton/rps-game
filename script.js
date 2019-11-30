@@ -2,6 +2,7 @@ function game(){
 
   const results = document.querySelector('#result-container')
   const resultText = document.createElement('p')
+  resultText.innerText = "Paper Scissors Rock against the computer"
   results.appendChild(resultText)
   const buttons = document.querySelectorAll('button')
   buttons.forEach(button => button.addEventListener('click', clickHandler))
